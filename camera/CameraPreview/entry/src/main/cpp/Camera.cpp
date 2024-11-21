@@ -265,5 +265,14 @@ bool destroyCameraSession()
         return false;
     }
     
+    ret = OH_CaptureSession_Release(captureSession);
+    if (ret == CAMERA_OK) {
+        OH_LOG_INFO(LOG_APP, "OH_CaptureSession_Release success ");
+    } else {
+        OH_LOG_ERROR(LOG_APP, "OH_CaptureSession_Release failed, %{public}d", ret);
+        return false;
+    }
+    captureSession = nullptr;
+    
     return true;
 }
